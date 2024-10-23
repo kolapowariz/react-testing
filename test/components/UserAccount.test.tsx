@@ -13,8 +13,10 @@ describe('UserAccount', () => {
       id: 4,
       name: 'Wariz',
     }
+
     render(<UserAccount user={user} />)
     const result = screen.getByText(user.name)
+
     expect(result).toBeInTheDocument()
   });
 
@@ -24,9 +26,10 @@ describe('UserAccount', () => {
       name: 'Wariz',
       isAdmin: false
     }
+
     render(<UserAccount user={user} />)
-    screen.debug()
     const button = screen.queryByRole('button');
+
     expect(button).not.toBeInTheDocument()
   });
 
@@ -38,6 +41,7 @@ describe('UserAccount', () => {
     }
     render(<UserAccount user={user} />)
     const button = screen.getByRole('button')
+    
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent(/edit/i)
   });
