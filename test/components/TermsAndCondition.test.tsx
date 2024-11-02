@@ -10,31 +10,30 @@ afterEach(()=> {
 })
 
 describe('TermsAndCondition', () => {
-  it('should render the correct text and initial state', () => {
+
+  const renderComponent = () => {
     render(<TermsAndConditions />)
+    return {
+      heading: screen.getByRole('heading'),
+      checkbox: screen.getByRole('checkbox'),
+      button: screen.getByRole('button')
+    }
+  }
+  it('should render the correct text and initial state', () => {
+    const {heading, checkbox, button } = renderComponent()
 
-    const heading = screen.getByRole('heading')
-    expect(heading).toBeInTheDocument()
     expect(heading).toHaveTextContent('Terms & Conditions')
-
-    const checkbox = screen.getByRole('checkbox');
-    expect(checkbox).toBeInTheDocument();
     expect(checkbox).not.toBeChecked()
-
-    const button = screen.getByRole('button');
-    expect(button).toBeInTheDocument()
     expect(button).toBeDisabled()
   });
 
   it('should enable the button when the checkbox is checked', async () => {
-    render(<TermsAndConditions />)
+    const {button, checkbox} = renderComponent()
 
-    const checkbox = screen.getByRole('checkbox')
     const user = userEvent.setup()
     await user.click(checkbox)
 
-    screen.debug()
-    expect(screen.getByRole('button')).toBeEnabled();
+    expect(button).toBeEnabled();
     
   })
 })
