@@ -24,8 +24,6 @@ describe('SearchBox', () => {
   it('should render an input field for searching', () => {
     const {input} = renderComponent()
 
-    screen.debug()
-
     expect(input).toBeInTheDocument()
   });
 
