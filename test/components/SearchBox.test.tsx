@@ -1,7 +1,6 @@
 import { cleanup, render, screen } from '@testing-library/react'
 import { it, expect, describe, afterEach, vi } from 'vitest'
 import '@testing-library/jest-dom/vitest'
-import React from 'react'
 import userEvent from '@testing-library/user-event'
 import SearchBox from '../../src/components/SearchBox'
 

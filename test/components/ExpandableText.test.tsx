@@ -1,6 +1,5 @@
 import { cleanup, render, screen } from '@testing-library/react'
 import { it, expect, describe, afterEach } from 'vitest'
-import React from 'react'
 import '@testing-library/jest-dom/vitest'
 import ExpandableText from '../../src/components/ExpandableText'
 import userEvent from '@testing-library/user-event'

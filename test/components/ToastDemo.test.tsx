@@ -1,7 +1,6 @@
 import { cleanup, render, screen} from '@testing-library/react'
 import { it, expect, describe, afterEach } from 'vitest'
 import ToastDemo from '../../src/components/ToastDemo'
-import React from 'react'
 import { Toaster } from 'react-hot-toast'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom/vitest'
