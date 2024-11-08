@@ -2,7 +2,6 @@ import { it, expect, describe } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import UserAccount from '../../src/components/UserAccount'
 import { User } from '../../src/entities'
-import React from 'react'
 import '@testing-library/jest-dom/vitest'
 
 // test not working yesterday night cos it was rerendering solve by checking out the beforeeach or aftereach hook

@@ -1,7 +1,6 @@
 import { it, expect, describe, afterEach } from 'vitest'
 import { cleanup, render, screen } from '@testing-library/react'
 // import { waitFor } from '@testing-library/react'
-import React from 'react'
 import "@testing-library/jest-dom/vitest"
 import TagList from '../../src/components/TagList'
 
@@ -22,7 +21,7 @@ describe('TagList', () => {
     // });
 
     const listItems = await screen.findAllByRole('listitem')
-    screen.debug()
+    // screen.debug()
     expect(listItems.length).toBeGreaterThan(0)
 
   })

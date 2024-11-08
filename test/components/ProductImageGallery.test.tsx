@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { it, expect, describe } from 'vitest'
 import '@testing-library/jest-dom/vitest'
-import React from 'react'
 import ProductImageGallery from '../../src/components/ProductImageGallery'
 
 describe('ProductImageGallery', () => {

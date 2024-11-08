@@ -1,7 +1,6 @@
 import { it, expect, describe } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/vitest'
-import React from 'react'
 import UserList from '../../src/components/UserList'
 import { User } from '../../src/entities'
 
