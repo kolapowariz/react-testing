@@ -1,10 +1,11 @@
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
-import { it, expect, describe, beforeAll, afterAll } from 'vitest'
 import '@testing-library/jest-dom/vitest'
-import ProductList from '../../src/components/ProductList'
-import { server } from '../mocks/server'
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
 import { delay, http, HttpResponse } from 'msw'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import ProductList from '../../src/components/ProductList'
+import AllProviders from '../AllProvider'
 import { db } from '../mocks/db'
+import { server } from '../mocks/server'
 
 describe('ProductList', () => {
   const productIds: number[] = [];
@@ -19,8 +20,9 @@ describe('ProductList', () => {
   afterAll(() => {
     db.product.deleteMany({where: {id: {in: productIds }}})
   })
+
   it('shoould render the list of products', async () => {
-    render(<ProductList />)
+    render(<ProductList />, { wrapper: AllProviders})
     const items = await screen.findAllByRole('listitem')
     expect(items.length).toBeGreaterThan(0)
   })
@@ -28,7 +30,7 @@ describe('ProductList', () => {
   it('should render no products available if no product is found', async () => {
     server.use(http.get('/products', () => HttpResponse.json([])));
 
-    render(<ProductList />);
+    render(<ProductList />, { wrapper: AllProviders});
 
     const message = await screen.findByText(/no products/i)
     expect(message).toBeInTheDocument()
@@ -37,7 +39,7 @@ describe('ProductList', () => {
   it('should render an error message when there is an error', async () => {
     server.use(http.get('/products', () => HttpResponse.error()));
 
-    render(<ProductList />);
+    render(<ProductList />, { wrapper: AllProviders});
 
     expect(await screen.findByText(/error/i)).toBeInTheDocument()
   })
@@ -48,13 +50,13 @@ describe('ProductList', () => {
       return HttpResponse.json([])
     }))
 
-    render(<ProductList />)
+    render(<ProductList />, { wrapper: AllProviders})
 
     expect(await screen.findByText(/loading/i)).toBeInTheDocument()
   })
 
   it('should remove the loading indicator after data is fetched', async () => {
-    render(<ProductList />)
+    render(<ProductList />, { wrapper: AllProviders})
 
     await waitForElementToBeRemoved(()=> screen.queryByText(/loading/i))
   })
@@ -62,7 +64,7 @@ describe('ProductList', () => {
   it('should remove the loading indicator after data fetching fails', async () => {
     server.use(http.get('/products', () => HttpResponse.error()));
 
-    render(<ProductList />)
+    render(<ProductList />, { wrapper: AllProviders})
 
     await waitForElementToBeRemoved(()=> screen.queryByText(/loading/i))
   })
