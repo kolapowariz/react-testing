@@ -7,7 +7,6 @@ describe('ProductImageGallery', () => {
   it('should return nothing if given empty array', () => {
     const { container } = (render(<ProductImageGallery imageUrls={[]} />))
     expect(container).toBeEmptyDOMElement()
-    screen.debug(container)    
   })
 
   it('should render list of images', () => {
