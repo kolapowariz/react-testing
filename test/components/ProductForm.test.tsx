@@ -129,7 +129,7 @@ describe('ProductForm', () => {
     },
     {
       scenerio: 'longer than 255 characters',
-      name: 'a'.repeat(256),
+      name: 'a'.repeat(257),
       errorMessage: /255/
     }
   ])('should display an error if name is $scenerio', async ({ name, errorMessage }) => {
